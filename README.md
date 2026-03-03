@@ -75,7 +75,7 @@ You have two options:
 Install [GitHub Desktop](https://desktop.github.com/download/), sign in with your GitHub account, then go to *File → Clone repository → URL* and paste:
 
 ```
-https://github.com/sarkadava/python-working-group-zas
+https://github.com/sarkadava/ZAS_Python_WG
 ```
 
 This keeps your local copy in sync with any updates — you will get new session materials automatically.
