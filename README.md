@@ -21,9 +21,6 @@ There is no fixed pace and no single teacher. One person hosts each session, oth
 ```
 📁 sessions/          # One folder per session with notebooks and materials
 📁 data/              # Shared example datasets used across sessions
-📁 resources/         # Cheatsheets, links, and reference documents
-📁 programme/         # The 6-month programme plan
-📁 imgs/              # Images used in this README
 ```
 
 Each session folder is named `session_XX_topic` and contains a Jupyter notebook, any data files used, and a short notes file.
