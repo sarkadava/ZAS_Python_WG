@@ -84,8 +84,6 @@ This keeps your local copy in sync with any updates — you will get new session
 
 At the top of this page, click **<> Code → Download ZIP** and unzip wherever you like. You will need to re-download manually when new sessions are added.
 
-![Screenshot showing the Code button and Download ZIP option on GitHub](imgs/download_zip.png)
-
 ---
 
 ## Contributing
