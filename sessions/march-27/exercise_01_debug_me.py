@@ -50,7 +50,7 @@ print("Max score: ", max_score)
 
 # Normalise scores to 0–1 range
 df["score_norm"] = (df["score"] - df["score"].min()) / \
-                   (df["score"].max() - df["score"].min)  
+                   (df["score"].max() - df["score"].min()) 
 
 
 # --- 6. PLOT ----------------------------------------------
