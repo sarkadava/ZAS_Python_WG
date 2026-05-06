@@ -1,0 +1,165 @@
+---
+title: "Session 3 exercise: reproducibility and project workflow"
+subtitle: "ZAS Pythonistas working group"
+date: today
+date-format: "MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    highlight-style: github
+    theme: flatly
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Before you start
+
+Make sure you have:
+
+- Cloned the group repo and opened it as a folder in Positron or VS Code
+- Activated your conda environment (`zas_python_wg`) -- check the bottom status bar
+- Opened a terminal and verified with `conda info --envs` (asterisk = active)
+
+Render this document when you are done: `quarto render session03_exercise.qmd`
+
+---
+
+## Part A: check your environment
+
+### A1. In the terminal, list your conda environments and confirm the right one is active:
+
+```{.bash filename="Terminal"}
+conda info --envs
+```
+
+### A2. Export your full environment and open the file to inspect it:
+
+```{.bash filename="Terminal"}
+conda env export > environment-full.yml
+```
+
+### A3. Now export only what you explicitly installed:
+
+```{.bash filename="Terminal"}
+conda env export --from-history > environment-minimal.yml
+```
+
+What is the difference between the two files? Which would you commit to the repo and why?
+
+### A4. Restart session
+
+Close and re-open your IDE (VS Code/Positron). Open your project folder, activate conda your environment in the terminal (`conda activate env_name`), and select the relevant interpreter.
+
+---
+
+## Part B: fix the broken file path
+
+The cell below contains a hardcoded absolute path that will break on every
+machine except the one it was written on.
+
+### B1. Run the cell as-is and read the error.
+
+```{python}
+import pandas as pd
+from pathlib import Path
+
+# TODO B2: this path is broken -- fix it using pyprojroot or pathlib
+# See the session handout for the pattern
+data_path = "/Users/replace-me/projects/zas-pythonistas/data/raw/sample.csv"
+
+df = pd.read_csv(data_path)
+print(f"Loaded {len(df)} rows")
+df.head()
+```
+
+### B2. Fix the path using `pyprojroot`:
+
+```{python}
+# Your fixed version here
+
+```
+
+### B3. Once it works, notice how the output renders inline in the document.
+This is one advantage of Quarto over a plain script.
+
+
+### B4. Update environment.yml
+
+ Save your environment to environment.yml. Inspect it; is pyprojroot there?
+
+---
+
+## Part C: git hygiene
+
+Work through these steps in the terminal -- you cannot run git commands
+in a Python chunk, but you can document what you did here.
+
+### C1. Check what git currently sees:
+
+```{.bash filename="Terminal"}
+git status
+```
+
+Do you see any files that should not be committed (e.g. `__pycache__/`, `.ipynb_checkpoints/`)?
+
+### C2. Create or update `.gitignore` to exclude:
+
+```{.bash filename=".gitignore"}
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+environment-full.yml
+environment-minimal.yml
+```
+
+### C3. Stage and commit your work:
+
+```{.bash filename="Terminal"}
+git add session03_exercise.qmd .gitignore
+git commit -m "add: session 3 exercise and updated gitignore"
+```
+
+Write your commit message below so you have a record of what you did:
+
+> My commit message: ...
+
+---
+
+## Part D: compare formats (discussion)
+
+Now that you have worked in this `.qmd` file, compare the experience
+with the plain `.py` script version (`session03_exercise.py`).
+
+Think about:
+
+- Where did the output appear in each format?
+- Which was easier to navigate?
+- Which would you share with a collaborator?
+- What does `Kernel -> Restart & Run All` do differently here vs in a `.ipynb` notebook?
+
+```{python}
+# You can use this cell for any extra exploration
+
+```
+
+---
+
+## Stretch: render to HTML
+
+If you have not already, render this document:
+
+```{.bash filename="Terminal"}
+quarto render session03_exercise.qmd
+```
+
+Open the resulting `.html` file. Notice that:
+
+- Code and output appear together
+- The document is self-contained and shareable
+- The path fix from Part B is visible and reproducible
+
